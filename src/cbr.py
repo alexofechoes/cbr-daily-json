@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 
 class CBRFetcher():
+    url = 'http://www.cbr.ru/scripts/XML_daily.asp'
 
     def currency_rates(self):
         xml = self._request_cbr_data()
@@ -26,8 +27,7 @@ class CBRFetcher():
 
 
     def _request_cbr_data(self):
-        url = 'http://www.cbr.ru/scripts/XML_daily.asp'
-        res = requests.get(url)
+        res = requests.get(self.url)
         return res.text
 
 

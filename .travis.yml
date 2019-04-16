@@ -4,11 +4,14 @@ python:
   - "3.7"
 install:
   - 'pip install pipenv'
-  - 'pipenv install'
+  - 'pipenv install --dev'
 
 branches:
   only:
     - master
+
+script:
+  pytest
 
 deploy:
   provider: heroku
