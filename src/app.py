@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from .cbr import CBRFetcher
 
 
@@ -8,4 +8,5 @@ cbr_fetcher = CBRFetcher()
 
 @app.route("/")
 def get_json_data():
-    return cbr_fetcher.currency_rates()
+    currency_rates = cbr_fetcher.currency_rates()
+    return jsonify(currency_rates)

@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 class CBRFetcher():
     def currency_rates(self):
         xml = self._request_cbr_data()
-        return self._parse_xml_to_json(xml)
+        return self._parse_xml(xml)
 
 
     def _request_cbr_data(self):
@@ -15,8 +15,7 @@ class CBRFetcher():
         return res.text
 
 
-    def _parse_xml_to_json(self, xml_data):
+    def _parse_xml(self, xml_data):
         bs = BeautifulSoup(xml_data, features="lxml")
-        valutes = bs.find_all('valute')
-        res = [{e.name: e.string for e in valute} for valute in valutes]
-        return json.dumps(res)
+        currencies = bs.find_all('valute')
+        return [{e.name: e.string for e in currency} for currency in currencies]
