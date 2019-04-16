@@ -4,9 +4,25 @@ from bs4 import BeautifulSoup
 
 
 class CBRFetcher():
+
     def currency_rates(self):
         xml = self._request_cbr_data()
-        return self._parse_xml(xml)
+        currencies = self._parse_xml(xml)
+        return [self._mapping_currency(currency) for currency in currencies]
+
+
+    def _mapping_currency(self, currency):
+        return {
+            'code': currency['charcode'],
+            'name': currency['name'],
+            'rate': self._calculate_rate(currency)
+        }
+
+
+    def _calculate_rate(self, currency):
+        value = float(currency['value'].replace(',', '.'))
+        nominal = float(currency['nominal'])
+        return value / nominal
 
 
     def _request_cbr_data(self):
