@@ -1,5 +1,4 @@
 import requests_mock
-import pytest
 from src.cbr import CBRFetcher
 
 
@@ -9,27 +8,28 @@ def test_cbr_fetcher():
         cbr_fetcher = CBRFetcher()
         currency_rates = cbr_fetcher.currency_rates()
 
-    expected = [
-        {
-            'code': "AUD",
-            'name': "Австралийский доллар",
-            'rate': 45.8946
+    expected = {
+        "AUD": {
+            "code": "AUD", 
+            "name": "Австралийский доллар",
+            "rate": 45.8946
         },
-        {
-            'code': "AZN",
-            'name': "Азербайджанский манат",
-            'rate': 37.8675
+        "AZN": {
+            "code": "AZN", 
+            "name": "Азербайджанский манат",
+            "rate": 37.8675
         },
-        {
-            'code': "GBP",
-            'name': "Фунт стерлингов Соединенного королевства",
-            'rate': 84.0738
+        "GBP": {
+            "code": "GBP",
+            "name": "Фунт стерлингов Соединенного королевства",
+            "rate": 84.0738,
         },
-    ]
+    }
     assert expected == currency_rates
 
+
 def _get_xml_response():
-    return '''
+    return """
     <ValCurs Date="17.04.2019" name="Foreign Currency Market">
         <Valute ID="R01010">
             <NumCode>036</NumCode>
@@ -52,4 +52,4 @@ def _get_xml_response():
             <Name>Фунт стерлингов Соединенного королевства</Name>
             <Value>84,0738</Value>
         </Valute>
-    </ValCurs>'''
+    </ValCurs>"""
