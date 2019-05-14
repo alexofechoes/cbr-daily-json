@@ -15,6 +15,7 @@ gunicorn = "*"
 requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
+flask-caching = "*"
 
 [requires]
 python_version = "3.7"
