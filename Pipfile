@@ -7,6 +7,7 @@ verify_ssl = true
 flake8 = "*"
 pytest = "*"
 requests-mock = "*"
+black = "*"
 
 [packages]
 flask = "*"
@@ -17,3 +18,6 @@ lxml = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
